@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.target=MyWorld
+comment0.text=\r\n\ Short\ demo\ showing\ how\ to\ animate\ a\ background\ image.\r\n\ \r\n\ @author\ polle,\ mik\r\n\ @version\ 1.4\r\n
+comment1.params=
+comment1.target=MyWorld()
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=void\ prepare()
+numComments=4
