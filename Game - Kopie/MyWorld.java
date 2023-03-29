@@ -13,17 +13,9 @@ public class MyWorld extends World {
     private Backround backround2 = new Backround();
 
     public MyWorld() {
-        super(800, 600, 1, false);
+        super(850, 800, 1, false);
         prepare();
         // Füge hier deine Objekte zur Welt hinzu
-    }
-
-    public void act() {
-        if (Greenfoot.getRandomNumber(100) < 2)
-        {
-            Car1 car = new Car1();
-            addObject(car,450,30);
-        }
     }
     
     private void prepare()
@@ -31,6 +23,9 @@ public class MyWorld extends World {
         addObject(backround,400,400);
         addObject(backround2,400,-400);
         Car1 car = new Car1();
-        addObject(car,474,672);
+        addObject(car,400,300);
+        
+        Polizei police = new Polizei();
+        addObject(police,400,700);
     }
 }
