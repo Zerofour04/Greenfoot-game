@@ -13,19 +13,47 @@ public class MyWorld extends World {
     private Backround backround2 = new Backround();
 
     public MyWorld() {
-        super(850, 800, 1, false);
+        super( 800, 910, 1, false);
         prepare();
         // Füge hier deine Objekte zur Welt hinzu
     }
+    
+    public void act()
+    {
+        if (Greenfoot.getRandomNumber(500) < 2)
+        {
+            Ambulance AmbuEnemy = new Ambulance();
+            addObject(AmbuEnemy, 450, -30);
+        }
+        
+        if (Greenfoot.getRandomNumber(500) < 1)
+        {
+            Taxi TaxEnemy = new Taxi();
+            addObject(TaxEnemy, 350, -30);
+        }
+    }
+    
     
     private void prepare()
     {
         addObject(backround,400,400);
         addObject(backround2,400,-400);
+        
         Car1 car = new Car1();
-        addObject(car,400,300);
+        addObject(car,400,600);
         
         Polizei police = new Polizei();
-        addObject(police,400,700);
+        addObject(police,400,850);
+        
+        bullet_Symbol b1 = new bullet_Symbol();
+        addObject(b1, getWidth()-400, getHeight()-450);
+        
+        shield_Symbol s1 = new shield_Symbol();
+        addObject(s1, getWidth()-300, getHeight()-250);
+        
+        
+        
+
+     
     }
 }

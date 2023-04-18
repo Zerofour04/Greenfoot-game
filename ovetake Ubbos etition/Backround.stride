@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class name="Backround" extends="Actor" extends-java="Actor" enable="true" strideversion="1">
+    <javadoc xml:space="preserve"/>
+    <imports>
+        <import target="java.util.*" enable="true"/>
+        <import target="greenfoot.*" enable="true"/>
+    </imports>
+    <implements/>
+    <fields>
+        <variable access="private" type="int" type-java="int" name="speed" value="15" value-java="15" enable="true"/>
+        <variable access="private" type="int" type-java="int" name="time" value="0" value-java="0" enable="true"/>
+    </fields>
+    <constructors/>
+    <methods>
+        <method access="public" type="void" type-java="void" name="act" enable="true">
+            <javadoc xml:space="preserve">Act - do whatever the Backround wants to do. This method is called whenever the 'Act' or 'Run' button gets pressed in the environment.</javadoc>
+            <params/>
+            <throws/>
+            <body>
+                <if condition="getY()&gt;1200" condition-java="getY() &gt; 1200" enable="true">
+                    <ifStatements>
+                        <call expression="setLocation(getX(),getY()-1600)" expression-java="setLocation(getX(), getY() - 1600)" enable="true"/>
+                        <call expression="setLocation(getX(),getY()+speed)" expression-java="setLocation(getX(), getY() + speed)" enable="true"/>
+                    </ifStatements>
+                    <else>
+                        <call expression="setLocation(getX(),getY()+speed)" expression-java="setLocation(getX(), getY() + speed)" enable="true"/>
+                    </else>
+                </if>
+                <blank/>
+                <assign dest="time" dest-java="time" src="time+1" src-java="time + 1" enable="true"/>
+                <if condition="Greenfoot.isKeyDown(&quot;h&quot;)" condition-java="Greenfoot.isKeyDown(&quot;h&quot;)" enable="true">
+                    <ifStatements>
+                        <assign dest="speed" dest-java="speed" src="speed-1" src-java="speed - 1" enable="true"/>
+                    </ifStatements>
+                </if>
+                <call expression="getWorld().showText(&quot;speed&quot;+speed,54,200)" expression-java="getWorld().showText(&quot;speed&quot; + speed, 54, 200)" enable="true"/>
+                <if condition="Greenfoot.isKeyDown(&quot;w&quot;)" condition-java="Greenfoot.isKeyDown(&quot;w&quot;)" enable="true">
+                    <ifStatements>
+                        <assign dest="speed" dest-java="speed" src="20" src-java="20" enable="true"/>
+                    </ifStatements>
+                </if>
+            </body>
+        </method>
+        <method access="public" type="void" type-java="void" name="setSpeed" enable="true">
+            <javadoc xml:space="preserve"/>
+            <params>
+                <params type="int" type-java="int" name="newSpeed"/>
+            </params>
+            <throws/>
+            <body>
+                <assign dest="speed" dest-java="speed" src="newSpeed" src-java="newSpeed" enable="true"/>
+            </body>
+        </method>
+    </methods>
+</class>
