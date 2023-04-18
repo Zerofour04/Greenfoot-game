@@ -38,12 +38,7 @@ public class Ambulance extends Actor
     
     public void checkCollision()
     {
-        if (isTouching(Bullet.class))
-        {
-            getWorld().removeObject(this);
-        }
-        
-        if (isTouching(shield.class))
+        if (isTouching(Bullet.class) || isTouching(shield.class))
         {
             getWorld().removeObject(this);
         }

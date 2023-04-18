@@ -31,6 +31,21 @@ public class MyWorld extends World {
             Taxi TaxEnemy = new Taxi();
             addObject(TaxEnemy, 350, -30);
         }
+        
+        if (Greenfoot.getRandomNumber(100) < 2)
+        {
+            bullet_Symbol b1 = new bullet_Symbol();
+            addObject(b1, 450, -30);
+            
+
+        }
+        
+        if (Greenfoot.getRandomNumber(100) < 2)
+        {
+            
+            shield_Symbol s1 = new shield_Symbol();
+            addObject(s1, 250, -30);
+        }
     }
     
     
@@ -45,15 +60,7 @@ public class MyWorld extends World {
         Polizei police = new Polizei();
         addObject(police,400,850);
         
-        bullet_Symbol b1 = new bullet_Symbol();
-        addObject(b1, getWidth()-400, getHeight()-450);
-        
-        shield_Symbol s1 = new shield_Symbol();
-        addObject(s1, getWidth()-300, getHeight()-250);
-        
-        
-        
-
-     
+        HeartFull heart = new HeartFull();
+        addObject(heart, 150, 150);
     }
 }

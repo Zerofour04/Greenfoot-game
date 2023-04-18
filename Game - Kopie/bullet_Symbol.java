@@ -15,10 +15,27 @@ public class bullet_Symbol extends Actor
      */
     public void act() 
     {
-        this.pickup();
+        
         //this.move();
         //this.movement();
-       
+        setLocation(getX(), getY() + speed);
+
+        
+        if (Greenfoot.isKeyDown("s"))
+        {
+            speed = 0;
+        }
+        else 
+        {
+            speed = 8;
+        }
+        
+        if (Greenfoot.isKeyDown("w"))
+        {
+            speed = 17;
+        
+        }
+        this.pickup();
     }   
     
 

@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.List;
 
 /**
  * Write a description of class Car1 here.
@@ -14,8 +15,8 @@ public class Car1 extends Actor
      */
     public int range = 1600;
     public static int XChase = 0;
-    public int damage = 0;
-    public int life = 3;
+    public static int damage = 0;
+
     int fireDelay;
     
     public void act() 
@@ -62,41 +63,55 @@ public class Car1 extends Actor
         }
     }
     
-        public void test(){
-        if ( ! getObjectsInRange( range, Polizei.class ).isEmpty() ) //Erkennung des Autos 
-    {
-    Actor UwU = getObjectsInRange( range, Polizei.class ).get( 0 ); // Defenition des Actors wenn er in die Range kommt
-    turnTowards( UwU.getX(), UwU.getY()); //Drehrichtung zum Verfolger
-    
+    public void test() {
+        if (!getObjectsInRange(range, Polizei.class).isEmpty()) {
+            // Erkennt das Polizeiauto
+            Actor policeCoords = getObjectsInRange(range, Polizei.class).get(0);
+            turnTowards(policeCoords.getX(), policeCoords.getY()); // Dreht das Auto zum Polizeiauto hin
+        }
     }
-    }
     
-        public void shoot()
+    public void shoot()
     {
         if(Greenfoot.isKeyDown("space") && Bullet.numOfBullets <= 0 && fireDelay <= 0){
              
             Bullet.numOfBullets ++;
             getWorld().addObject(new Bullet(),getX(), getY()-70);
-                fireDelay = 30;
-        
-        
-        
+            fireDelay = 30;
+
     }
      --fireDelay;
 }
-    
-    
-    public void damage()
-{
-    if (isTouching(Polizei.class) || isTouching(Ambulance.class) || isTouching(Taxi.class))
-    {
-        Gameover();
-    }
-}
-
-    public void Gameover()
-    {
+        public void Gameover() {
         getWorld().showText("Gameover", 400, 400);
         Greenfoot.stop();
     }
+    
+    public void damage() {
+        
+        if (damage >= 3) {
+            Gameover();
+            damage = damage -3;
+        }
+        
+        if (isTouching(Ambulance.class) || isTouching(Taxi.class)) 
+        {
+            damage++;
+            setLocation(getX(), getY()+100);
+        }
+    
+                if (isTouching(Polizei.class)) 
+        {
+            damage++;
+            setLocation(getX(), getY()-100);
+        }
+        
+    }
+    
+
+
+    
+
+    
+
 }
