@@ -16,6 +16,11 @@ public class Car1 extends Actor
     public int range = 1600;
     public static int XChase = 0;
     public static int damage = 0;
+    public static int speedCar = 180;
+    int speedCarDelay = 5;
+    int speedCarDelayBack = 125;
+    public static int Kills = 0;
+     private boolean contacted = false;
 
     int fireDelay;
     
@@ -26,10 +31,18 @@ public class Car1 extends Actor
         test();
         shoot();
         damage();
+        GameWin();
+        getWorld().showText("" + speedCar, 80, 100);
+        neutralAcc();
     }
     public int getXCoords()
     {
         return getX();
+    }
+    
+    public void resetParameter()
+    {
+        speedCar = 180;
     }
     
     public void move()
@@ -37,7 +50,10 @@ public class Car1 extends Actor
         if(Greenfoot.isKeyDown("W")){
             setLocation(getX(), getY()-10); 
             setRotation(270);
+            speedAcc();
+            
         }
+        
  
         if(Greenfoot.isKeyDown("A")){
              setLocation(getX()-10, getY()); 
@@ -54,15 +70,35 @@ public class Car1 extends Actor
              setRotation(270);
         }
         
-        if (getX() < 320){
-            setLocation(320, getY());
+        if (getX() < 150){
+            setLocation(150, getY());
         }
         
-                if (getX() > 480){
-            setLocation(480, getY());
+                if (getX() >630){
+            setLocation(630, getY());
         }
     }
     
+    public void speedAcc(){
+        if (speedCar < 210) {
+            if (speedCar == speedCarDelay) {
+                speedCar = 0;
+            } else {
+                speedCar++;
+            }
+        }
+    
+    }
+    
+        public void neutralAcc(){
+    if (!Greenfoot.isKeyDown("W")) {
+        speedCarDelay++;
+        if (speedCar > 180) {
+            speedCar--;
+            speedCarDelay = 0;
+        }
+    }
+    }
     public void test() {
         if (!getObjectsInRange(range, Polizei.class).isEmpty()) {
             // Erkennt das Polizeiauto
@@ -81,37 +117,49 @@ public class Car1 extends Actor
 
     }
      --fireDelay;
-}
+    }
         public void Gameover() {
         getWorld().showText("Gameover", 400, 400);
         Greenfoot.stop();
     }
     
+    
+    public void GameWin(){
+        getWorld().showText("Kills: " + Kills, 100, 400);
+        if (Kills == 3){
+            getWorld().showText("WiN", 400, 400);
+            Greenfoot.stop();
+            Kills = 0;
+        }
+    }
+    
     public void damage() {
         
-        if (damage >= 3) {
+        if (damage >= 4) {
             Gameover();
-            damage = damage -3;
+            damage = damage -4;
         }
         
-        if (isTouching(Ambulance.class) || isTouching(Taxi.class)) 
+        if (isTouching(Ambulance.class) || isTouching(RedCar.class) || isTouching(Taxi.class) || isTouching(WhiteCar.class) || isTouching(WhiteSedan.class)) 
+        if (!contacted)
         {
+            {
             damage++;
-            setLocation(getX(), getY()+100);
+            contacted = true;
+            }  
         }
+        else {
+            contacted = false;
+        }
+
     
-                if (isTouching(Polizei.class)) 
+        if (isTouching(Polizei.class)) 
         {
             damage++;
             setLocation(getX(), getY()-100);
         }
         
     }
-    
-
-
-    
-
     
 
 }

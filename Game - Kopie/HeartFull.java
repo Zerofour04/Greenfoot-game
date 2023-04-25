@@ -19,11 +19,18 @@ public class HeartFull extends Actor
     
 public void showHealth() {
     if (Car1.damage == 1) {
-        setImage(new GreenfootImage("Download (8).png"));
+        setImage(new GreenfootImage("FSpeedometer.png"));
+        getWorld().showText("HP: 3", 220, 100);
+
     } else if (Car1.damage == 2) {
-        setImage(new GreenfootImage("Download (9).png"));
+        setImage(new GreenfootImage("HSpeedometer.png"));
+        getWorld().showText("HP: 2", 220, 100);
     } else if (Car1.damage == 3) {
-        setImage(new GreenfootImage("Download (10).png"));
+        setImage(new GreenfootImage("ESpeedometer.png"));
+        getWorld().showText("HP: 1", 220, 100);
+    } else if (Car1.damage == 0){
+        getWorld().showText("HP: 4", 220, 100);
+
     }
 }
 }

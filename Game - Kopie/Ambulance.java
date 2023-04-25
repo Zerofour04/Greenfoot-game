@@ -33,15 +33,30 @@ public class Ambulance extends Actor
             speed = 17;
         
         }
-        this.checkCollision();
+        //checkCollisionShield();
+        checkCollsionBullet();
     }
     
-    public void checkCollision()
+    public void checkCollisionShield()
     {
-        if (isTouching(Bullet.class) || isTouching(shield.class))
+        if  (isTouching(shield.class))
+        {
+        shield shieldObj = (shield) getWorld().getObjects(shield.class).get(0);
+        getWorld().removeObject(shieldObj);
+        
+        getWorld().removeObject(this);
+        
+        }
+    }
+    
+    public void checkCollsionBullet(){
+        if (isTouching(Bullet.class) || isTouching(shield.class) )
         {
             getWorld().removeObject(this);
+            shield.active = false;
+            Car1.Kills++;
         }
-
     }
+    
+    
 }
